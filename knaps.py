@@ -19,9 +19,6 @@ from sklearn.svm import SVC
 import altair as alt
 from sklearn.utils.validation import joblib
 
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt # plotting
-import os # accessing directory structure
 
 
 st.title("PENAMBANGAN DATA")
@@ -30,6 +27,8 @@ upload_data, preporcessing, modeling, implementation = st.tabs(["Upload Data", "
 
 with upload_data:
     st.write("""# Upload File""")
+    st.write("Dataset yang digunakan adalah healthcare-dataset-stroke-data dataset yang diambil dari https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset")
+    st.write("Total datanya adalah 5110 dengan data training 80% (4088) dan data testing 20% (1022)")
     uploaded_files = st.file_uploader("Upload file CSV", accept_multiple_files=True)
     for uploaded_file in uploaded_files:
         df = pd.read_csv(uploaded_file)
@@ -39,10 +38,12 @@ with upload_data:
 
 with preporcessing:
     st.write("""# Preprocessing""")
-    df[["sex", "age", "famsize", "Pstatus", "Medu", "Fedu", "Mjob", "Fjob", "reason"]].agg(['min','max'])
+    df[["gender", "age", "hypertension", "heart_disease", "ever_married", "work_type", "Residence_type", "avg_glucose_level", "smoking_status"]].agg(['min','max'])
 
     df.stroke.value_counts()
+    df = df.drop(columns=["id","bmi"])
 
+    X = df.drop(columns="stroke")
     y = df.stroke
     "### Membuang fitur yang tidak diperlukan"
     df
@@ -445,7 +446,7 @@ with implementation:
             residence_type_R, residence_type_U,
             smoking_status_U, smoking_status_F, smoking_status_N, smoking_status_S, bmi
             ]])
-        st.write(inputs)
+        # st.write(inputs)
         # baru = pd.DataFrame(inputs)
         # input = pd.get_dummies(baru)
         # st.write(input)
