@@ -18,11 +18,16 @@ from sklearn.datasets import make_classification
 from sklearn.svm import SVC
 import altair as alt
 from sklearn.utils.validation import joblib
-
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt # plotting
+import numpy as np # linear algebra
+import os # accessing directory structure
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 
 st.title("PENAMBANGAN DATA")
-st.write("By: Indyra Januar - 200411100022")
+st.write("By: Rizky Sarsyah N P - 200411100112")
 st.write("Grade: Penambangan Data C")
 upload_data, preporcessing, modeling, implementation = st.tabs(["Upload Data", "Prepocessing", "Modeling", "Implementation"])
 
@@ -40,12 +45,10 @@ with upload_data:
 
 with preporcessing:
     st.write("""# Preprocessing""")
-    df[["gender", "age", "hypertension", "heart_disease", "ever_married", "work_type", "Residence_type", "avg_glucose_level", "smoking_status"]].agg(['min','max'])
+    df[["sex", "age", "famsize", "Pstatus", "Medu", "Fedu", "Mjob", "Fjob", "reason"]].agg(['min','max'])
 
     df.stroke.value_counts()
-    df = df.drop(columns=["id","bmi"])
 
-    X = df.drop(columns="stroke")
     y = df.stroke
     "### Membuang fitur yang tidak diperlukan"
     df
@@ -448,7 +451,7 @@ with implementation:
             residence_type_R, residence_type_U,
             smoking_status_U, smoking_status_F, smoking_status_N, smoking_status_S, bmi
             ]])
-        # st.write(inputs)
+        st.write(inputs)
         # baru = pd.DataFrame(inputs)
         # input = pd.get_dummies(baru)
         # st.write(input)
