@@ -36,7 +36,7 @@ with upload_data:
 
 with preporcessing:
     st.write("""# Preprocessing""")
-    
+
     df.y.value_counts()
     df = df.drop(columns=["Unnamed: 0"])
 
@@ -44,10 +44,6 @@ with preporcessing:
     Y = df.y
 
     #ganti numerik
-    colum_cat = ['GENDER','LUNG_CANCER']
-    for i in colum_cat:
-    st.write(df[i].value_counts())
-
     df_clean = df.copy()
     for i in colum_cat:
     st.write(f'Catagory of {i}')
