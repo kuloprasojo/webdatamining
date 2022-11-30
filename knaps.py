@@ -40,5 +40,3 @@ with preporcessing:
              st.write(j,val)
     
     df_clean
-
-with modeling:
