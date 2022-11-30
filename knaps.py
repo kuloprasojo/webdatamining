@@ -40,3 +40,26 @@ with preporcessing:
              st.write(j,val)
     
     df_clean
+
+    from sklearn.neighbors import LocalOutlierFactor
+    clf = LocalOutlierFactor()
+    y_pred = clf.fit_predict(df_clean)
+
+    x_score = clf.negative_outlier_factor_
+    outlier_score = pd.DataFrame()
+    outlier_score["score"] = x_score
+
+    #threshold
+    threshold2 = -1.5
+    filtre2 = outlier_score["score"] < threshold2
+    outlier_index = outlier_score[filtre2].index.tolist()
+
+    len(outlier_index)
+
+    df_clean = df.copy()
+
+    g = df_clean.groupby('LUNG_CANCER')
+    df_balanced = g.apply(lambda x: x.sample(g.size().min()).reset_index(drop=True))
+    df_balanced = df_balanced.reset_index(drop=True)
+    x = df_balanced[['SMOKING','PEER_PRESSURE','ALCOHOL CONSUMING']]
+    y = df_balanced['LUNG_CANCER'].map({'YES': 1, 'NO': 0})
