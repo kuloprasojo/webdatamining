@@ -30,7 +30,7 @@ with data_set_description:
     st.write("###### Data Set Ini Adalah : Prediksi Kanker Paru Paru - Lung Cancer Detection ")
     st.write("###### Sumber Data Set dari Kaggle : https://www.kaggle.com/datasets/jillanisofttech/lung-cancer-detection")
     st.write("""###### Penjelasan setiap kolom : """)
-    st.write("""1. preciptation (curah hujan) :
+    st.write("""1. preciptation (curah hujan) :""")
 
     st.write("###### Aplikasi ini untuk : Weather Prediction (Prediksi Cuaca) ")
     st.write("###### Source Code Aplikasi ada di Github anda bisa acces di link : https://github.com/HambaliFitrianto/Aplikasi-Web-Data-Mining-Weather-Prediction ")
@@ -188,3 +188,4 @@ with implementation:
     if all :
         st.balloons()
         submit()
+
