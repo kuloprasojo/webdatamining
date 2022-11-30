@@ -4,12 +4,8 @@ import numpy as np
 from sklearn import preprocessing
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from numpy import array
-from sklearn import tree
-from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, precision_score, f1_score
 from sklearn.tree import DecisionTreeClassifier
 from collections import OrderedDict
 from sklearn.neighbors import KNeighborsClassifier
@@ -20,22 +16,16 @@ import altair as alt
 from sklearn.utils.validation import joblib
 
 st.title("PENAMBANGAN DATA")
-st.write("##### Nama  : Ibal Bojay ")
-st.write("##### Nim   : - ")
-st.write("##### Kelas : - ")
+st.write("##### Nama  : Calvin Rifansyah")
+st.write("##### Nim   : 200411100072 ")
+st.write("##### Kelas : Penambangan Data C ")
 data_set_description, upload_data, preporcessing, modeling, implementation = st.tabs(["Data Set Description", "Upload Data", "Prepocessing", "Modeling", "Implementation"])
 
 with data_set_description:
     st.write("""# Data Set Description """)
-    st.write("###### Data Set Ini Adalah : Prediksi Kanker Paru Paru - Lung Cancer Detection ")
-    st.write("###### Sumber Data Set dari Kaggle : https://www.kaggle.com/datasets/jillanisofttech/lung-cancer-detection")
-    st.write("""###### Penjelasan setiap kolom : """)
-    st.write("""1. preciptation (curah hujan) :""")
-
-    st.write("###### Aplikasi ini untuk : Weather Prediction (Prediksi Cuaca) ")
-    st.write("###### Source Code Aplikasi ada di Github anda bisa acces di link : https://github.com/HambaliFitrianto/Aplikasi-Web-Data-Mining-Weather-Prediction ")
-    st.write("###### Untuk Wa saya anda bisa hubungi nomer ini : http://wa.me/6282138614807 ")
-
+    st.write("###### Data Set Ini Adalah : Brain Tumor (Tumor Otak) ")
+    st.write("###### Sumber Data Set dari Kaggle : https://www.kaggle.com/datasets/jillanisofttech/brain-tumor")
+    
 with upload_data:
     st.write("""# Upload File""")
     uploaded_files = st.file_uploader("Upload file CSV", accept_multiple_files=True)
@@ -46,4 +36,25 @@ with upload_data:
 
 with preporcessing:
     st.write("""# Preprocessing""")
-    df[["GENDER", "AGE", "SMOKING", "YELLOW_FINGERS", "ANXIETY", "LUNG_CANCER"]].agg(['min','max'])
+    
+    df.y.value_counts()
+    df = df.drop(columns=["Unnamed: 0"])
+
+    X = df.drop(columns="y")
+    Y = df.y
+
+    #ganti numerik
+    colum_cat = ['GENDER','LUNG_CANCER']
+    for i in colum_cat:
+    st.write(df[i].value_counts())
+
+    df_clean = df.copy()
+    for i in colum_cat:
+    st.write(f'Catagory of {i}')
+    catlist = df_clean[i].unique()
+    for j, val in enumerate(catlist):
+         dftobjfinal = df_clean[i].replace({val:j},inplace=True)
+         #print(dftobjfinal)
+         st.write(j,val)
+
+    df_clean
