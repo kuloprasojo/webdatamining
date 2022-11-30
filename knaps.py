@@ -42,6 +42,9 @@ with preporcessing:
     df_clean
 
 with modeling:
+    from sklearn.model_selection import train_test_split
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.40, random_state = 42, shuffle=True)
+
     st.write("""# Random Forest Classifier""")
     from sklearn.ensemble import RandomForestClassifier
     r_forest = RandomForestClassifier(criterion = 'entropy', max_depth = 20, n_estimators = 10000)
