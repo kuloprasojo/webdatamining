@@ -41,25 +41,24 @@ with preporcessing:
     
     df_clean
 
-    from sklearn.neighbors import LocalOutlierFactor
-    clf = LocalOutlierFactor()
-    y_pred = clf.fit_predict(df_clean)
+with modeling:
+    st.write("""# Random Forest Classifier""")
+    from sklearn.ensemble import RandomForestClassifier
+    r_forest = RandomForestClassifier(criterion = 'entropy', max_depth = 20, n_estimators = 10000)
+    r_forest.fit(x_train,y_train)
+    predicted = r_forest.predict(x_test)
+    score = r_forest.score(x_test, y_test)
+    rf_score_ = np.mean(score)
 
-    x_score = clf.negative_outlier_factor_
-    outlier_score = pd.DataFrame()
-    outlier_score["score"] = x_score
+    st.write('Accuracy : %.3f' % (rf_score_))
 
-    #threshold
-    threshold2 = -1.5
-    filtre2 = outlier_score["score"] < threshold2
-    outlier_index = outlier_score[filtre2].index.tolist()
+    st.write("""# Random Forest Classifier""")
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import classification_report
 
-    len(outlier_index)
+    logmodel= LogisticRegression()
+    logmodel.fit(x_train,y_train)
 
-    df_clean = df.copy()
-
-    g = df_clean.groupby('LUNG_CANCER')
-    df_balanced = g.apply(lambda x: x.sample(g.size().min()).reset_index(drop=True))
-    df_balanced = df_balanced.reset_index(drop=True)
-    x = df_balanced[['SMOKING','PEER_PRESSURE','ALCOHOL CONSUMING']]
-    y = df_balanced['LUNG_CANCER'].map({'YES': 1, 'NO': 0})
+    predictions=logmodel.predict(x_test)
+    st.write(classification_report(y_test,predictions))
