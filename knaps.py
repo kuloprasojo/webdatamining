@@ -6,15 +6,15 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 
 st.title("PENAMBANGAN DATA")
-st.write("##### Nama  : Calvin Rifansyah")
-st.write("##### Nim   : 200411100072 ")
+st.write("##### Nama  : Rizky Sarsyah Nur Prasojo")
+st.write("##### Nim   : 200411100112 ")
 st.write("##### Kelas : Penambangan Data C ")
 data_set_description, upload_data, preporcessing, modeling, implementation = st.tabs(["Data Set Description", "Upload Data", "Prepocessing", "Modeling", "Implementation"])
 
 with data_set_description:
     st.write("""# Data Set Description """)
-    st.write("###### Data Set Ini Adalah : Brain Tumor (Tumor Otak) ")
-    st.write("###### Sumber Data Set dari Kaggle : https://www.kaggle.com/datasets/jillanisofttech/brain-tumor")
+    st.write("###### Data Set Ini Adalah : Lung Cancer Prediction (Prediksi Kanker Paru Paru) ")
+    st.write("###### Sumber Data Set dari Kaggle : https://www.kaggle.com/datasets/jillanisofttech/lung-cancer-detection")
     
 with upload_data:
     st.write("""# Upload File""")
