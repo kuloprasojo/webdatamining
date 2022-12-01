@@ -81,7 +81,7 @@ with modeling:
 
     st.write('Accuracy : %.3f' % (rf_score_))
 
-    st.write("""# Random Forest Classifier""")
+    st.write("""# Logistic Regression""")
     from sklearn.model_selection import train_test_split
     from sklearn.linear_model import LogisticRegression
     from sklearn.metrics import classification_report
